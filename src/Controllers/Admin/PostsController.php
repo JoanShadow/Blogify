@@ -442,9 +442,7 @@ class PostsController extends BaseController
         $tags = explode(',', $this->data->tags);
 
         foreach ($tags as $hash) {
-            //array_push($this->tags, $this->tag->byHash($hash)->id);
-            array_push($this->tags, $this->tag->id);
-
+            array_push($this->tags, $this->tag->find($hash)->id);
         }
     }
 
@@ -546,7 +544,7 @@ class PostsController extends BaseController
         $hashes = explode(',', $tags);
 
         foreach ($hashes as $tag) {
-            array_push($aTags, $this->tag->byHash($tag));
+            array_push($aTags, $this->tag->find($tag));
         }
 
         return $aTags;
