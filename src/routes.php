@@ -81,16 +81,6 @@ Route::group($admin, function()
                 'as'   => 'users.restore',
                 'uses' => 'UserController@restore'
             ]);
-
-            Route::resource('categories', 'CategoriesController');
-            Route::get('categories/overview/{trashed?}', [
-                'as'   => 'categories.overview',
-                'uses' => 'CategoriesController@index',
-            ]);
-            Route::get('categories/{id}/restore', [
-                'as'   => 'categories.restore',
-                'uses' => 'CategoriesController@restore'
-            ]);
         });
 
 

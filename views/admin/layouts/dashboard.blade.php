@@ -58,21 +58,6 @@
                             </li>
                         @endif
 
-                        @if ( Auth::user()->role->name == 'Admin' )
-                            <li >
-                                <a href="#"><i class="fa fa-th-large fa-fw"></i>{{ trans("blogify::navigation.categories.title") }}<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="{{ route ('admin.categories.create') }}"><span class="fa fa-plus fa-fw"></span> {{ trans("blogify::navigation.categories.new") }}</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route ('admin.categories.index' ) }}"><span class="fa fa-th-list fa-fw"></span> {{ trans("blogify::navigation.categories.overview") }}</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                        @endif
-
                         @if ( Auth::user()->role->name != 'Reviewer' )
                             <li >
                                 <a href="#"><i class="fa fa-tags fa-fw"></i>{{ trans("blogify::navigation.tags.title") }}<span class="fa arrow"></span></a>
