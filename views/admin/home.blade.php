@@ -4,6 +4,8 @@
 
         <div class="row">
 
+            TEST
+
         @if ( isset($published_posts) )
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
