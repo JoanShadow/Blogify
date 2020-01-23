@@ -14,7 +14,7 @@ class Comment extends BaseModel
      *
      * @var string
      */
-    protected $table = 'comments';
+    protected $table = 'blogify_comments';
 
     /**
      * The attributes that are mass assignable
@@ -30,6 +30,7 @@ class Comment extends BaseModel
      */
     public $timestamps = true;
 
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -42,12 +43,37 @@ class Comment extends BaseModel
 
     public function user()
     {
-        return $this->belongsTo('App\user');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function post()
     {
-        return $this->belongsTo('jorenvanhocht\Blogify\Models\Post');
+        return $this->belongsTo('jorenvanhocht\Blogify\Models\Post', 'post_id');
+    }
+
+    // Answer in response to parent
+    public function parent()
+    {
+        return $this->belongsTo('jorenvanhocht\Blogify\Models\Comment', 'parent_id', 'id');
+    }
+
+    // Answers
+    public function answers()
+    {
+        return $this->hasMany('jorenvanhocht\Blogify\Models\Comment', 'parent_id', 'id')
+            ->orderBy('created_at', 'desc');
+    }
+
+    // Approved answers
+    public function activeAnswers()
+    {
+        return $this->answers()->where('revised', 2);
+    }
+
+    // Unviewed answers
+    public function unviewedAnswers()
+    {
+        return $this->activeAnswers()->whereNull('viewed');
     }
 
     /*
